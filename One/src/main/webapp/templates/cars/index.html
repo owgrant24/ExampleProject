@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--   Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}"/>
+    <title>All cars</title>
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">All cars</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--            <li class="nav-item active">-->
+            <!--                <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item">-->
+            <!--                <a class="nav-link" href="#">Link</a>-->
+            <!--            </li>-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Actions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/cars/new">Create new car</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+
+                </div>
+            </li>
+
+        </ul>
+        <!--        <a class="nav-link" href="#">Link</a>-->
+        <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Google" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+    </div>
+</nav>
+<br>
+<div class="container">
+    <table class="table table-hover table-bordered table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th class="col-md-2 col-sm-5 col-xs-2" scope="col">Year</th>
+            <th class="col-md-2 col-sm-5 col-xs-2" scope="col">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.year}"></td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info</button>
+                    </form>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/cars/{id}/edit(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Edit">Edit</button>
+                    </form>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="DELETE" th:action="@{/cars/{id}(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+</body>
+</html>
