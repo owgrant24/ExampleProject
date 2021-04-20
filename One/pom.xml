@@ -21,7 +21,6 @@
 
         <spring.version>5.2.13.RELEASE</spring.version>
         <spring.security>5.4.5</spring.security>
-        <log4j.version>2.14.1</log4j.version>
     </properties>
 
     <dependencies>
@@ -79,20 +78,6 @@
             <version>3.0.12.RELEASE</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.thymeleaf.extras</groupId>-->
-<!--            <artifactId>thymeleaf-extras-springsecurity5</artifactId>-->
-<!--            <version>3.0.4.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/io.projectreactor/reactor-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>io.projectreactor</groupId>-->
-<!--            <artifactId>reactor-core</artifactId>-->
-<!--            <version>3.4.5</version>-->
-<!--        </dependency>-->
-
-
         <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
         <dependency>
             <groupId>javax.annotation</groupId>
@@ -137,14 +122,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -158,29 +135,6 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.40</version>
         </dependency>
-
-        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core &ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.apache.logging.log4j</groupId>-->
-        <!--      <artifactId>log4j-core</artifactId>-->
-        <!--      <version>${log4j.version}</version>-->
-        <!--    </dependency>-->
-
-        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api &ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.apache.logging.log4j</groupId>-->
-        <!--      <artifactId>log4j-api</artifactId>-->
-        <!--      <version>${log4j.version}</version>-->
-        <!--    </dependency>-->
-
-        <!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl &ndash;&gt;-->
-        <!--    <dependency>-->
-        <!--      <groupId>org.apache.logging.log4j</groupId>-->
-        <!--      <artifactId>log4j-slf4j-impl</artifactId>-->
-        <!--      <version>${log4j.version}</version>-->
-        <!--      <scope>test</scope>-->
-        <!--    </dependency>-->
-
 
     </dependencies>
 

@@ -14,9 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @ComponentScan("com.github.owgrant24.one.security")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private AuthProviderImpl authProvider;
 
     @Autowired
-    private AuthProviderImpl authProvider;
+    public void setAuthProvider(AuthProviderImpl authProvider) {
+        this.authProvider = authProvider;
+    }
 
     @Override
     // Правила (ограничения прав)
@@ -26,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sign_up", "/login").anonymous()
                 // Указываем URL которые будут доступны только авторизованным пользователям
                 .antMatchers("/cars/**").authenticated()
-                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/resources/**").permitAll()
                 .and().csrf().disable()
                 .formLogin()

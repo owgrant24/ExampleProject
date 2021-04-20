@@ -54,7 +54,7 @@ CREATE TABLE cars
 );
 
 
--- INSERT INTO cars (brand, model, year_of_manufacture, price, mileage)
--- VALUES ('Chevrolet', 'Cruse', '2014', '397000', '73300'),
---       ('Chevrolet', 'Lacetti', '2012', '307000','97000' );
+INSERT INTO cars (brand, model, year_of_manufacture)
+VALUES ('Chevrolet', 'Cruse', '2014'),
+       ('Chevrolet', 'Lacetti', '2012');
 

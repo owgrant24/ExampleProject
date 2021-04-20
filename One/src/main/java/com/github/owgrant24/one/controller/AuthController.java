@@ -18,12 +18,13 @@ public class AuthController {
     private UserService userService;
     private UserValidator userValidator;
 
-    public AuthController() {
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Autowired
-    public AuthController(UserService userService, UserValidator userValidator) {
-        this.userService = userService;
+    public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
     }
 

@@ -16,11 +16,8 @@ public class MainController {
 
     private CarService carService;
 
-    public MainController() {
-    }
-
     @Autowired
-    public MainController(CarService carService) {
+    public void setCarService(CarService carService) {
         this.carService = carService;
     }
 

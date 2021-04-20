@@ -19,12 +19,13 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
-    private final ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
     @Autowired
-    public WebConfig(ApplicationContext applicationContext) {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
+
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
@@ -53,11 +54,6 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setContentType("text/html; charset=UTF-8");
         registry.viewResolver(resolver);
     }
-
-//    @Bean
-//    public SpringSecurityDialect springSecurityDialect(){
-//        return new SpringSecurityDialect();
-//    }
 
     // https://www.baeldung.com/maven-webjars
     @Override
