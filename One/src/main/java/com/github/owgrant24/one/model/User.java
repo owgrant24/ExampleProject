@@ -29,7 +29,7 @@ public class User {
     @Size(min = 6, message = "Minimum 6 symbols")
     private String password;
 
-    @Transient                                                  // при сериализации , поле не запишется
+    @Transient                                                              // при сериализации , поле не запишется
     private String confirmPassword;
 
     @ManyToMany(
