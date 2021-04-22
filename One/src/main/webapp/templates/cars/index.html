@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="https://www.thymeleaf.org/">
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,20 +34,21 @@
                     <a class="dropdown-item" href="/cars/new">Create new car</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Logout</a>
-
                 </div>
             </li>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item active">
+                <a class="nav-link" href="/admin">Admin panel</a>
+            </div>
         </ul>
         <!--        <a class="nav-link" href="#">Link</a>-->
-        <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
+        <form class="form-inline my-2 my-lg-0" th:action="@{https://www.google.com/search}">
             <input class="form-control mr-sm-2" type="search" name="q" placeholder="Google" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
     </div>
 </nav>
-<br>
 Welcome <span th:text="${user.toString()}">User</span>
+
 <div class="container">
     <table class="table table-hover table-bordered table-sm">
         <thead class="thead-light">
@@ -68,12 +70,14 @@ Welcome <span th:text="${user.toString()}">User</span>
                         <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info</button>
                     </form>
                 </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" class="btn-group" role="group"
+                     aria-label="Basic example">
                     <form th:method="GET" th:action="@{/cars/{id}/edit(id=${car.getId()})}">
                         <button type="submit" class="btn btn-outline-primary btn-sm" value="Edit">Edit</button>
                     </form>
                 </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" class="btn-group" role="group"
+                     aria-label="Basic example">
                     <form th:method="DELETE" th:action="@{/cars/{id}(id=${car.getId()})}">
                         <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete</button>
                     </form>

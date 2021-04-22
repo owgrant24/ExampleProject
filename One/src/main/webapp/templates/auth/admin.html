@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,33 +22,37 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Link</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--                   aria-haspopup="true" aria-expanded="false">-->
+<!--                    Dropdown-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" href="#">Action</a>-->
+<!--                    <a class="dropdown-item" href="#">Another action</a>-->
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+<!--            </li>-->
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
+        <form class="form-inline my-2 my-lg-0" th:action="@{https://www.google.com/search}">
             <input class="form-control mr-sm-2" type="search" name="q" placeholder="Google" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 </nav>
+Logged user: <span sec:authentication="name">User</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
 </body>
 </html>
+
