@@ -12,9 +12,12 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
+    private SessionFactory sessionFactory;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public List<User> getAllUsers() {
