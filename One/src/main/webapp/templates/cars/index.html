@@ -33,7 +33,10 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/cars/new">Create new car</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout">Logout</a>
+                    <form th:method="POST" th:action="@{/logout}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input class="dropdown-item" type="submit" value="Logout">
+                    </form>
                 </div>
             </li>
             <div sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item active">
