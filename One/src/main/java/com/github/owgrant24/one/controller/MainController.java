@@ -4,6 +4,7 @@ import com.github.owgrant24.one.model.Car;
 import com.github.owgrant24.one.security.SecurityUser;
 import com.github.owgrant24.one.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,17 +40,18 @@ public class MainController {
     }
 
     // Форма создания новой машины
+    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
     @GetMapping("/new")
     public String newCar(@ModelAttribute("car") Car car) {
         return "cars/new";
     }
-
+    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("car", carService.getCarById(id));
         return "cars/edit";
     }
-
+    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
     @PostMapping()
     public String create(@ModelAttribute("car") @Valid Car car,
                          BindingResult bindingResult) {
@@ -59,7 +61,7 @@ public class MainController {
         carService.saveCar(car);
         return "redirect:/cars";                                              // редирект на страницу index
     }
-
+    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -68,7 +70,7 @@ public class MainController {
         carService.saveCar(car);
         return "redirect:/cars";
     }
-
+    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         carService.deleteCarById(id);

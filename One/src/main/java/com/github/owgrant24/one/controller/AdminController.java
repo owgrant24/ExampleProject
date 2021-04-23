@@ -2,10 +2,12 @@ package com.github.owgrant24.one.controller;
 
 import com.github.owgrant24.one.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Secured({"ROLE_ADMIN"})
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
