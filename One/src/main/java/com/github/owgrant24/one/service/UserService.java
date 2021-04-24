@@ -1,6 +1,7 @@
 package com.github.owgrant24.one.service;
 
 import com.github.owgrant24.one.model.User;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;

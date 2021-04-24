@@ -1,6 +1,7 @@
 package com.github.owgrant24.one.service;
 
 import com.github.owgrant24.one.model.Car;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.List;
 
