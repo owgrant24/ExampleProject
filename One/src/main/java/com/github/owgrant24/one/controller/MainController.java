@@ -31,8 +31,7 @@ public class MainController {
         // Получим все машины из DAO и передадим на отображение в представление
         if (filter == null || filter.isEmpty()) {
             model.addAttribute("cars", carService.getAllCars());
-        }
-        else {
+        } else {
             model.addAttribute("cars", carService.getAllCarsWithFilter(filter));
         }
         model.addAttribute("user", user.toString());
@@ -87,7 +86,6 @@ public class MainController {
     public String delete(@PathVariable("id") int id) {
         carService.deleteCarById(id);
         return "redirect:/cars";
-
     }
 
 }

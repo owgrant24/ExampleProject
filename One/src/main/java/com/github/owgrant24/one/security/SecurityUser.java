@@ -1,11 +1,14 @@
 package com.github.owgrant24.one.security;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-
+@Getter
+@Setter
 public class SecurityUser extends User {
     private String name;
     private String surname;
@@ -29,22 +32,6 @@ public class SecurityUser extends User {
             String name, String surname) {
         super(email, password, authorities);
         this.name = name;
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
         this.surname = surname;
     }
 
