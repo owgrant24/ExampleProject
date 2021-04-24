@@ -7,6 +7,8 @@ import java.util.List;
 public interface CarService {
     List<Car> getAllCars();
 
+    List<Car> getAllCarsWithFilter(String filter);
+
     void saveCar(Car car);
 
     Car getCarById(int id);

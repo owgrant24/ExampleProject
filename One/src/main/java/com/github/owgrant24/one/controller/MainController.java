@@ -25,10 +25,18 @@ public class MainController {
     }
 
     @GetMapping()
-    public String index(Model model, @AuthenticationPrincipal SecurityUser user) {
+    public String index(Model model
+            , @RequestParam(value = "filter", required = false) String filter
+            , @AuthenticationPrincipal SecurityUser user) {
         // Получим все машины из DAO и передадим на отображение в представление
-        model.addAttribute("cars", carService.getAllCars());
+        if (filter == null || filter.isEmpty()) {
+            model.addAttribute("cars", carService.getAllCars());
+        }
+        else {
+            model.addAttribute("cars", carService.getAllCarsWithFilter(filter));
+        }
         model.addAttribute("user", user.toString());
+        model.addAttribute("filter", filter);
         return "cars/index";
     }
 
@@ -40,18 +48,20 @@ public class MainController {
     }
 
     // Форма создания новой машины
-    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @GetMapping("/new")
     public String newCar(@ModelAttribute("car") Car car) {
         return "cars/new";
     }
-    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("car", carService.getCarById(id));
         return "cars/edit";
     }
-    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PostMapping()
     public String create(@ModelAttribute("car") @Valid Car car,
                          BindingResult bindingResult) {
@@ -61,7 +71,8 @@ public class MainController {
         carService.saveCar(car);
         return "redirect:/cars";                                              // редирект на страницу index
     }
-    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -70,7 +81,8 @@ public class MainController {
         carService.saveCar(car);
         return "redirect:/cars";
     }
-    @Secured({ "ROLE_ADMIN", "ROLE_MANAGER" })
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         carService.deleteCarById(id);

@@ -24,6 +24,15 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
+    public List<Car> getAllCarsWithFilter(String filter) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Car> query = session.createQuery(
+                "FROM Car WHERE brand=:brand");
+        query.setParameter("brand", filter);
+        return query.getResultList();
+    }
+
+    @Override
     public void saveCar(Car car) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(car);

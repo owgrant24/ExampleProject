@@ -27,6 +27,12 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
+    public List<Car> getAllCarsWithFilter(String filter) {
+        return carDAO.getAllCarsWithFilter(filter);
+    }
+
+    @Override
+    @Transactional
     public void saveCar(Car car) {
         carDAO.saveCar(car);
     }

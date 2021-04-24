@@ -54,13 +54,20 @@
 Welcome <span th:text="${user.toString()}">User</span>
 
 <div class="container">
+    <form class="form-inline my-2 my-lg-0" th:method="GET" th:action="@{/cars}">
+        <input th:value="${filter != null} ? ${filter}" name="filter" placeholder="Brand" class="form-control mr-sm-2">
+        <button type="submit" class="btn btn-outline-success">Filter</button>
+    </form>
+</div>
+<br>
+<div class="container">
     <table class="table table-hover table-bordered table-sm">
         <thead class="thead-light">
         <tr>
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
-            <th class="col-md-2 col-sm-5 col-xs-2" scope="col">Year</th>
-            <th class="col-md-2 col-sm-5 col-xs-2" scope="col">Operations</th>
+            <th scope="col">Year</th>
+            <th scope="col">Operations</th>
         </tr>
         </thead>
         <tbody>
