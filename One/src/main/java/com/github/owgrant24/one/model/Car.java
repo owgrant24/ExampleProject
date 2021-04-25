@@ -18,6 +18,9 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Size(min = 7, max = 20, message = "VIN should be from 7 to 20 symbols")
+    @Column(name = "vin")
+    private String vin;
 
     @Size(min = 1, max = 50, message = "Model should be from 1 to 50 symbols")
     @Column(name = "model")
