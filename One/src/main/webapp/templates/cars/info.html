@@ -48,15 +48,18 @@
 <br>
 <div class="card">
     <div class="card-body">
-        ID : <a th:text="${car.getId()}">value</a>
+        ID : <a th:text="${car.id}">value</a>
         <br>
-        Brand and model car : <a th:text="${car.getBrand() + ' ' + car.getModel()}">value</a>
+        Brand and model car : <a th:text="${car.brand + ' ' + car.model}">value</a>
         <br>
-        Year : <a th:text="${car.getYear()}">value</a>
+        Year : <a th:text="${car.year}">value</a>
+        <br>
+        Mileage : <a th:text="${car.mileage}">value</a>
+        <br>
+        Price : <a th:text="${car.price}">value</a>
         <br>
     </div>
 </div>
-
 
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>

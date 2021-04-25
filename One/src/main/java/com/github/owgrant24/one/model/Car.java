@@ -30,6 +30,12 @@ public class Car {
     @Column(name = "year_of_manufacture")
     private int year;
 
+    @Column(name = "price")
+    private int price;
+
+    @Column(name = "mileage")
+    private int mileage;
+
     @Override
     public String toString() {
         return brand + " " + model + " " + year;

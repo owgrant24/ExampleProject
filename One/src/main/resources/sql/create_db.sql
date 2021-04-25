@@ -50,11 +50,14 @@ CREATE TABLE cars
     brand               varchar(15),
     model               varchar(25),
     year_of_manufacture int(4),
+    price               int,
+    mileage             int,
     PRIMARY KEY (id)
 );
 
 
-INSERT INTO cars (brand, model, year_of_manufacture)
-VALUES ('Chevrolet', 'Cruse', '2014'),
-       ('Chevrolet', 'Lacetti', '2012');
+INSERT INTO cars (brand, model, year_of_manufacture, price, mileage)
+VALUES ('Chevrolet', 'Cruse', '2014', 400000, 97000),
+       ('Volkswagen', 'Polo', '2015', 450000, 70000),
+       ('Chevrolet', 'Lacetti', '2012', 290000, 120000);
 
