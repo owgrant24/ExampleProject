@@ -63,7 +63,7 @@
             VIN : <a th:text="${car.vin}">value</a>
         </div>
         <div sec:authorize="hasRole('ROLE_BUYER')">
-            VIN : <a th:text="${car.vin.substring(0,car.vin.length()-5).concat('XXXXX')}">value</a>
+            VIN : <a th:text="${car.vin.substring(0,car.vin.length()-5).concat('*****')}">value</a>
         </div>
         <br>
     </div>

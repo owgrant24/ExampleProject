@@ -27,8 +27,14 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional
-    public List<Car> getAllCarsWithFilter(String filter) {
-        return carDAO.getAllCarsWithFilter(filter);
+    public List<Car> getAllCarsWithFilter(int value, String column) {
+        return carDAO.getAllCarsWithFilter(value, column);
+    }
+
+    @Override
+    @Transactional
+    public List<Car> getAllCarsWithTwoFilter(int value, String text2, String column, String column2) {
+        return carDAO.getAllCarsWithTwoFilter(value, text2, column, column2);
     }
 
     @Override

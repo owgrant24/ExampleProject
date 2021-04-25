@@ -26,16 +26,19 @@ public class MainController {
 
     @GetMapping()
     public String index(Model model
-            , @RequestParam(value = "filter", required = false) String filter
+            , @RequestParam(value = "filterBrand", required = false) String filterBrand
+                        //  , @RequestParam(value = "sold", required = false) String sold
             , @AuthenticationPrincipal SecurityUser user) {
-        // Получим все машины из DAO и передадим на отображение в представление
-        if (filter == null || filter.isEmpty()) {
-            model.addAttribute("cars", carService.getAllCars());
+        if (filterBrand == null || filterBrand.isEmpty()) {
+            model.addAttribute("cars", carService.getAllCarsWithFilter(0, "sold"));
         } else {
-            model.addAttribute("cars", carService.getAllCarsWithFilter(filter));
+//            model.addAttribute("cars", carService.getAllCarsWithFilter(filterBrand, "brand"));
+            model.addAttribute("cars"
+                    , carService.getAllCarsWithTwoFilter(0, filterBrand, "sold", "brand")
+            );
         }
         model.addAttribute("user", user.toString());
-        model.addAttribute("filter", filter);
+        model.addAttribute("filterBrand", filterBrand);
         return "cars/index";
     }
 
@@ -86,6 +89,36 @@ public class MainController {
     public String delete(@PathVariable("id") int id) {
         carService.deleteCarById(id);
         return "redirect:/cars";
+    }
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
+    @GetMapping("/{id}/sell")
+    public String sale(Model model, @PathVariable("id") int id) {
+        model.addAttribute("car", carService.getCarById(id));
+        return "cars/sell";
+    }
+
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
+    @PatchMapping("/{id}/sell")
+    public String sell(@ModelAttribute("car") @Valid Car car
+            , BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "cars/sell";
+        }
+        car.setSold(1);
+        carService.saveCar(car);
+        return "redirect:/cars";                                              // редирект на страницу index
+    }
+
+    @GetMapping("/all")
+    public String carsAll(Model model
+            , @RequestParam(value = "filterBrand", required = false) String filterBrand
+                          //  , @RequestParam(value = "sold", required = false) String sold
+            , @AuthenticationPrincipal SecurityUser user) {
+        model.addAttribute("cars", carService.getAllCars());
+        model.addAttribute("user", user.toString());
+        model.addAttribute("filterBrand", filterBrand);
+        return "cars/cars_all";
     }
 
 }

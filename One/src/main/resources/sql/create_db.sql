@@ -3,7 +3,7 @@ CREATE TABLE users
     id       int          NOT NULL AUTO_INCREMENT,
     name     varchar(255) NOT NULL,
     surname  varchar(255) NOT NULL,
-    email    varchar(255) NOT NULL UNIQUE ,
+    email    varchar(255) NOT NULL UNIQUE,
     password varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -53,12 +53,14 @@ CREATE TABLE cars
     year_of_manufacture int(4),
     price               int,
     mileage             int,
+    selling_price       int,
+    sold                tinyint(1),
     PRIMARY KEY (id)
 );
 
 
-INSERT INTO cars (vin,brand, model, year_of_manufacture, price, mileage)
-VALUES ('XWBJA69VJDA033200','Chevrolet', 'Cruse', '2014', 400000, 97000),
-       ('WVWZZZ3AZSN123456','Volkswagen', 'Polo', '2015', 450000, 70000),
-       ('XWBJA69VJDA001011','Chevrolet', 'Lacetti', '2012', 290000, 120000);
+INSERT INTO cars (vin, brand, model, year_of_manufacture, price, mileage,sold)
+VALUES ('XWBJA69VJDA033200', 'Chevrolet', 'Cruse', '2014', 400000, 97000,0),
+       ('WVWZZZ3AZSN123456', 'Volkswagen', 'Polo', '2015', 450000, 70000,0),
+       ('XWBJA69VJDA001011', 'Chevrolet', 'Lacetti', '2012', 290000, 120000,1);
 
