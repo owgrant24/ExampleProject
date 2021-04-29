@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
+    <!--   Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}"/>
-    <title>Admin panel</title>
+    <!--   Bootstrap CSS for test work -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Cars online store</title>
+
     <style>
         body {
             background-color: #f5f5f5;
@@ -54,41 +58,44 @@
         </form>
     </div>
 </nav>
-Logged user: <span sec:authentication="name">User</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+Welcome <span th:text="${user.toString()}">User</span>
+
+<br>
 <div class="container">
-    <h1>Dashboard</h1>
+    <h1>List Cars</h1>
     <hr>
     <table class="table table-hover table-bordered table-sm">
         <thead class="thead-light">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Surname</th>
-            <th scope="col">email</th>
-            <th scope="col">password</th>
-            <th class="col-md-2 col-sm-5 col-xs-2" scope="col">Operations</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year</th>
+            <th scope="col">Mileage</th>
+            <th scope="col">Price</th>
+            <th scope="col">Operations</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.surname}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.password}"></td>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.year}"></td>
+            <td th:text="${car.mileage}"></td>
+            <td th:text="${car.price}"></td>
             <td>
-                <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
-                    <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete
-                    </button>
-                </form>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info</button>
+                    </form>
+                </div>
             </td>
         </tr>
         </tbody>
     </table>
+    <span th:text="'Total cars : ' + ${cars.size()}"></span>
 </div>
-
-
+<br/>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
 </body>
 </html>
-

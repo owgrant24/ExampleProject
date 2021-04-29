@@ -1,10 +1,12 @@
 package com.github.owgrant24.one.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 @Getter
@@ -30,6 +32,7 @@ public class Car {
     @Column(name = "brand")
     private String brand;
 
+    @Min(value = 1850, message = "Must be at least 1850")
     @Column(name = "year_of_manufacture")
     private int year;
 
