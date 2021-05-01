@@ -42,7 +42,8 @@ public class PersistenceConfig {
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setPackagesToScan("com.github.owgrant24.one.model");
         Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+//        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");   // MySQL
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.connection.characterEncoding", "utf8");
         hibernateProperties.setProperty("hbm2ddl.auto", "update");

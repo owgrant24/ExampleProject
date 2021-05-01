@@ -1,13 +1,13 @@
 # Учебный проект "Магазин по продаже машин"
 
-Для запуска проекта, необходим Apache Tomcat, MySQL
+Для запуска проекта, необходим Apache Tomcat, PostgreSQL
 
 ### Стек технологий используемый в проекте:
 
   	- Spring MVC
   	- Spring Security
   	- Spring AOP
-  	- MySQL
+  	- PostgreSQL
   	- Hibernate
   	- Bootstrap
   	- Thymeleaf
