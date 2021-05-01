@@ -24,21 +24,11 @@ public class CarDAOImpl implements CarDAO {
     }
 
     @Override
-    public List<Car> getAllCarsWithFilter(int value, String column) {
+    public List<Car> getAllCarsWithFilter() {
         Session session = sessionFactory.getCurrentSession();
         Query<Car> query = session.createQuery(
-                "FROM Car WHERE " + column + "=:text");
-        query.setParameter("text", value);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Car> getAllCarsWithTwoFilter(int value, String text2, String column, String column2) {
-        Session session = sessionFactory.getCurrentSession();
-        Query<Car> query = session.createQuery(
-                "FROM Car WHERE " + column + "=:value AND " + column2 + "=:text2");
-        query.setParameter("value", value);
-        query.setParameter("text2", text2);
+                "FROM Car WHERE sold =:text");
+        query.setParameter("text", false);
         return query.getResultList();
     }
 

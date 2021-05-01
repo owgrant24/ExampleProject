@@ -1,5 +1,3 @@
-create schema one_db_postgres;
-
 CREATE TABLE users
 (
     id       serial       NOT NULL,
@@ -56,13 +54,13 @@ CREATE TABLE cars
     price               int,
     mileage             int,
     selling_price       int,
-    sold                smallint,
+    sold                boolean,
     PRIMARY KEY (id)
 );
 
 
 INSERT INTO cars (vin, brand, model, year_of_manufacture, price, mileage, sold)
-VALUES ('XWBJA69VJDA033200', 'Chevrolet', 'Cruse', '2014', 400000, 97000, 0),
-       ('WVWZZZ3AZSN123456', 'Volkswagen', 'Polo', '2015', 450000, 70000, 0),
-       ('XWBJA69VJDA001011', 'Chevrolet', 'Lacetti', '2012', 290000, 120000, 1);
+VALUES ('XWBJA69VJDA033200', 'Chevrolet', 'Cruse', '2014', 400000, 97000, false),
+       ('WVWZZZ3AZSN123456', 'Volkswagen', 'Polo', '2015', 450000, 70000, false),
+       ('XWBJA69VJDA001011', 'Chevrolet', 'Lacetti', '2012', 290000, 120000, true);
 

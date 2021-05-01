@@ -1,6 +1,5 @@
 package com.github.owgrant24.one.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,7 +45,7 @@ public class Car {
     private Integer sellingPrice;
 
     @Column(name = "sold")
-    private int sold;
+    private boolean sold;
 
     @Override
     public String toString() {

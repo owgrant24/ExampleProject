@@ -82,7 +82,7 @@ Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]<
             <td th:text="${car.year}"></td>
             <td th:text="${car.mileage}"></td>
             <td th:text="${car.price}"></td>
-            <td th:text="${car.sold == 0} ? '-' : 'yes'">-</td>
+            <td th:text="${car.sold} ? 'yes' : '-'">-</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">

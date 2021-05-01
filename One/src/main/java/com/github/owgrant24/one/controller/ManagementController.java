@@ -80,7 +80,7 @@ public class ManagementController {
         if (bindingResult.hasErrors()) {
             return "management/sell";
         }
-        car.setSold(1);
+        car.setSold(true);
         carService.saveCar(car);
         return "redirect:/management";                                              // редирект на страницу index
     }

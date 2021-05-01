@@ -7,9 +7,7 @@ import java.util.List;
 public interface CarDAO {
     List<Car> getAllCars();
 
-    List<Car> getAllCarsWithFilter(int value, String column);
-
-    List<Car> getAllCarsWithTwoFilter(int value , String text2, String column, String column2);
+    List<Car> getAllCarsWithFilter();
 
     void saveCar(Car car);
 
