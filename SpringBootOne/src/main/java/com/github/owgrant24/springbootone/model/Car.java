@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
@@ -32,6 +33,7 @@ public class Car {
     private String brand;
 
     @Min(value = 1850, message = "Must be at least 1850")
+    @Max(value = 2050, message = "Should be no more than 2050")
     @Column(name = "year_of_manufacture")
     private int year;
 

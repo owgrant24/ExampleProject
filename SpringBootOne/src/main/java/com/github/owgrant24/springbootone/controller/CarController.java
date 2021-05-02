@@ -22,7 +22,7 @@ public class CarController {
 
     @GetMapping()
     public String index(Model model, @AuthenticationPrincipal SecurityUser user) {
-        model.addAttribute("cars", carService.getAllCarsWithFilter());
+        model.addAttribute("cars", carService.getAllCarsWithFilter(false));
         model.addAttribute("user", user.toString());
         return "cars/index";
     }

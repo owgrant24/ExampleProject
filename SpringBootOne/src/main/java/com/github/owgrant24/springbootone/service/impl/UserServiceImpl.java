@@ -1,9 +1,9 @@
 package com.github.owgrant24.springbootone.service.impl;
 
-import com.github.owgrant24.springbootone.dao.RoleDAO;
-import com.github.owgrant24.springbootone.dao.UserDAO;
 import com.github.owgrant24.springbootone.model.Role;
 import com.github.owgrant24.springbootone.model.User;
+import com.github.owgrant24.springbootone.repository.RoleRepository;
+import com.github.owgrant24.springbootone.repository.UserRepository;
 import com.github.owgrant24.springbootone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,18 +16,18 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private UserDAO userDAO;
-    private RoleDAO roleDAO;
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Autowired
-    public void setRoleDAO(RoleDAO roleDAO) {
-        this.roleDAO = roleDAO;
+    public void setRoleRepository(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
     }
 
     @Autowired
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
+        return userRepository.findAll();
     }
 
     @Override
@@ -46,26 +46,26 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleDAO.getOne(3));
+        roles.add(roleRepository.getOne(3));
         user.setRoles(roles);
-        userDAO.saveUser(user);
+        userRepository.save(user);
     }
 
     @Override
     @Transactional
     public User getUserById(int id) {
-        return userDAO.getUserById(id);
+        return userRepository.getOne(id);
     }
 
     @Override
     @Transactional
     public User getUserByEmail(String email) {
-        return userDAO.getUserByEmail(email);
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
     @Transactional
     public void deleteUserById(int id) {
-        userDAO.deleteUserById(id);
+        userRepository.deleteById(id);
     }
 }
