@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--   Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}"/>
+    <title>Cars online store</title>
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Cars online store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Actions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" class="dropdown-item"
+                       href="/management/new">
+                        Create new car</a>
+                    <div class="dropdown-divider"></div>
+                    <form th:method="POST" th:action="@{/logout}">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input class="dropdown-item" type="submit" value="Logout">
+                    </form>
+                </div>
+            </li>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN')" class="nav-item active">
+                <a class="nav-link" href="/admin">Admin panel</a>
+            </div>
+            <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')" class="nav-item active">
+                <a class="nav-link" href="/management">Management control</a>
+            </div>
+        </ul>
+        <!--        <a class="nav-link" href="#">Link</a>-->
+        <form class="form-inline my-2 my-lg-0" th:action="@{https://www.google.com/search}">
+            <input class="form-control mr-sm-2" type="search" name="q" placeholder="Google" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+Logged user: <span sec:authentication="name">User</span>
+Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+
+<br>
+<div class="container">
+    <h1>List Cars</h1>
+    <hr>
+    <table class="table table-hover table-bordered table-sm">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year</th>
+            <th scope="col">Mileage</th>
+            <th scope="col">Price</th>
+            <th scope="col">Sold</th>
+            <th scope="col">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.year}"></td>
+            <td th:text="${car.mileage}"></td>
+            <td th:text="${car.price}"></td>
+            <td th:text="${car.sold} ? 'yes' : '-'">-</td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info</button>
+                    </form>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/management/{id}/edit(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Edit">Edit</button>
+                    </form>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="DELETE" th:action="@{/management/{id}(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete</button>
+                    </form>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <form th:method="GET" th:action="@{/management/{id}/sell(id=${car.getId()})}">
+                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Sell">Sell</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span th:text="'Total cars : ' + ${cars.size()}"></span>
+</div>
+<br/>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
+</body>
+</html>
