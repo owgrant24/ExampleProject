@@ -74,7 +74,6 @@ public class ManagementController {
         return "management/sell";
     }
 
-
     @PatchMapping("/{id}/sell")
     public String sell(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
