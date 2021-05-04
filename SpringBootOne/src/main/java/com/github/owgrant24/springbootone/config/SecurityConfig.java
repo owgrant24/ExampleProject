@@ -31,12 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     // Правила (ограничения прав)
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
+                .antMatchers("/css/**", "/webjars/**").permitAll()
                 // Указываем URL которые будут доступны только анонимным (неавторизованным) пользователям
                 .antMatchers("/sign_up", "/login").anonymous()
                 // Указываем URL которые будут доступны только авторизованным пользователям
-                .antMatchers("/cars/**").authenticated()
-                .antMatchers("/static/**", "/webjars/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 // Указываем где у нас форма логина
@@ -50,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")
                 // Когда пользователь прошёл аутентификацию и хочет зайти на странички для не авторизированных
                 // пользователей
-                .and().exceptionHandling().accessDeniedPage("/cars")
+                .and().exceptionHandling().accessDeniedPage("/error")
                 .and()
                 // добавлена возможность logout
                 .logout();
