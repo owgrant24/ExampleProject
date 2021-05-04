@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
@@ -37,14 +36,14 @@ public class AuthController {
     @GetMapping("/sign_up")
     public String getSignUp(Model model) {
         model.addAttribute("user", new User());
-        return "/auth/sign_up";
+        return "auth/sign_up";
     }
 
     @PostMapping("/sign_up")
     public String signUp(@ModelAttribute("user") @Valid User user, BindingResult result) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
-            return "/auth/sign_up";
+            return "auth/sign_up";
         }
         userService.saveUser(user);
         return "redirect:/login";
