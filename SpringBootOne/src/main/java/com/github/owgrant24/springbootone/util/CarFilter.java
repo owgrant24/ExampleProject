@@ -35,6 +35,26 @@ public class CarFilter {
             spec = spec.and(CarSpec.mileageLesserThanOrEq(maxMileage));
             filterDefinition.append("&maxMileage=").append(maxMileage);
         }
+        if (map.containsKey("minYear") && !map.get("minYear").isEmpty()) {
+            int minYear = Integer.parseInt(map.get("minYear"));
+            spec = spec.and(CarSpec.yearGreaterThanOrEq(minYear));
+            filterDefinition.append("&minYear=").append(minYear);
+        }
+        if (map.containsKey("maxYear") && !map.get("maxYear").isEmpty()) {
+            int maxYear = Integer.parseInt(map.get("maxYear"));
+            spec = spec.and(CarSpec.yearLesserThanOrEq(maxYear));
+            filterDefinition.append("&maxYear=").append(maxYear);
+        }
+        if (map.containsKey("minPrice") && !map.get("minPrice").isEmpty()) {
+            int minPrice = Integer.parseInt(map.get("minPrice"));
+            spec = spec.and(CarSpec.priceGreaterThanOrEq(minPrice));
+            filterDefinition.append("&minPrice=").append(minPrice);
+        }
+        if (map.containsKey("maxPrice") && !map.get("maxPrice").isEmpty()) {
+            int maxPrice = Integer.parseInt(map.get("maxPrice"));
+            spec = spec.and(CarSpec.priceLesserThanOrEq(maxPrice));
+            filterDefinition.append("&maxPrice=").append(maxPrice);
+        }
 
     }
 }

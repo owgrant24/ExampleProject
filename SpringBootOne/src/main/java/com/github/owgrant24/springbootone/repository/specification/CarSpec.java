@@ -12,7 +12,7 @@ public class CarSpec {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.like(root.get("model"), "%" + filterModel + "%");
     }
-    
+
     public static Specification<Car> mileageLesserThanOrEq(Integer value) {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.lessThanOrEqualTo(root.get("mileage"), value);
@@ -22,4 +22,24 @@ public class CarSpec {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.greaterThanOrEqualTo(root.get("mileage"), value);
     }
+    public static Specification<Car> yearLesserThanOrEq(Integer value) {
+        return (root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.lessThanOrEqualTo(root.get("year"), value);
+    }
+
+    public static Specification<Car> yearGreaterThanOrEq(Integer value) {
+        return (root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.greaterThanOrEqualTo(root.get("year"), value);
+    }
+    public static Specification<Car> priceLesserThanOrEq(Integer value) {
+        return (root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.lessThanOrEqualTo(root.get("price"), value);
+    }
+
+    public static Specification<Car> priceGreaterThanOrEq(Integer value) {
+        return (root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.greaterThanOrEqualTo(root.get("price"), value);
+    }
+
+
 }
