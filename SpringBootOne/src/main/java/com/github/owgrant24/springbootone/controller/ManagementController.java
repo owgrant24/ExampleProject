@@ -1,9 +1,13 @@
 package com.github.owgrant24.springbootone.controller;
 
 import com.github.owgrant24.springbootone.model.Car;
+import com.github.owgrant24.springbootone.repository.specification.CarSpec;
 import com.github.owgrant24.springbootone.security.SecurityUser;
 import com.github.owgrant24.springbootone.service.CarService;
+import com.github.owgrant24.springbootone.util.CarFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
 @Controller
@@ -25,8 +30,15 @@ public class ManagementController {
     }
 
     @GetMapping()
-    public String index(Model model, @AuthenticationPrincipal SecurityUser user) {
-        model.addAttribute("cars", carService.getAllCars());
+    public String index(Model model
+            , @AuthenticationPrincipal SecurityUser user
+            , @RequestParam Map<String, String> params
+    ) {
+
+        CarFilter carFilter = new CarFilter(params);
+
+        model.addAttribute("cars", carService.getCarWithFiltering(carFilter.getSpec()));
+//        model.addAttribute("filterDef", carFilter.getFilterDefinition().toString());
         model.addAttribute("user", user.toString());
         return "management/index";
     }

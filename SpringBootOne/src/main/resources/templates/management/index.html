@@ -56,61 +56,95 @@
         </form>
     </div>
 </nav>
-Logged user: <span sec:authentication="name">User</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
 
-<br>
-<div class="container">
-    <h1>List Cars</h1>
-    <hr>
-    <table class="table table-hover table-bordered table-sm">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">Brand</th>
-            <th scope="col">Model</th>
-            <th scope="col">Year</th>
-            <th scope="col">Mileage</th>
-            <th scope="col">Price</th>
-            <th scope="col">Sold</th>
-            <th scope="col">Operations</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="car : ${cars}">
-            <td th:text="${car.brand}"></td>
-            <td th:text="${car.model}"></td>
-            <td th:text="${car.year}"></td>
-            <td th:text="${car.mileage}"></td>
-            <td th:text="${car.price}"></td>
-            <td th:text="${car.sold} ? 'yes' : '-'">-</td>
-            <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
-                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info</button>
-                    </form>
-                </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <form th:method="GET" th:action="@{/management/{id}/edit(id=${car.getId()})}">
-                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Edit">Edit</button>
-                    </form>
-                </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <form th:method="DELETE" th:action="@{/management/{id}(id=${car.getId()})}">
-                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete</button>
-                    </form>
-                </div>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <form th:method="GET" th:action="@{/management/{id}/sell(id=${car.getId()})}">
-                        <button type="submit" class="btn btn-outline-primary btn-sm" value="Sell">Sell</button>
-                    </form>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <span th:text="'Total cars : ' + ${cars.size()}"></span>
-</div>
-<br/>
+<main>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <br>
+                <h3>Filtration</h3>
+                <form th:action="@{/management}" method="get">
+                    <div class="form-group">
+                        <input th:value="${param.brand != null} ? ${param.brand}" name="brand" placeholder="Brand"
+                               class="form-control mr-sm-2">
+                    </div>
+                    <div class="form-group">
+                        <input th:value="${param.model != null} ? ${param.model}" name="model" placeholder="Model"
+                               class="form-control mr-sm-2">
+                    </div>
+                    <div class="form-group">
+                        <input th:value="${param.minMileage != null} ? ${param.minMileage}" name="minMileage"
+                               placeholder="Min Mileage"
+                               class="form-control mr-sm-2">
+                    </div>
+                    <div class="form-group">
+                        <input th:value="${param.maxMileage != null} ? ${param.maxMileage}" name="maxMileage"
+                               placeholder="Max Mileage"
+                               class="form-control mr-sm-2">
+                    </div>
+                    <button type="submit" class="btn btn-outline-success">Filter</button>
+                </form>
+            </div>
+            <div class="col-sm-8">
+                <h1>List Cars</h1>
+                <hr>
+                <table class="table table-hover table-bordered table-sm">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Mileage</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Sold</th>
+                        <th scope="col">Operations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="car : ${cars}">
+                        <td th:text="${car.brand}"></td>
+                        <td th:text="${car.model}"></td>
+                        <td th:text="${car.year}"></td>
+                        <td th:text="${car.mileage}"></td>
+                        <td th:text="${car.price}"></td>
+                        <td th:text="${car.sold} ? 'yes' : '-'">-</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <form th:method="GET" th:action="@{/cars/{id}(id=${car.getId()})}">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm" value="Info">Info
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <form th:method="GET" th:action="@{/management/{id}/edit(id=${car.getId()})}">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm" value="Edit">Edit
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <form th:method="DELETE" th:action="@{/management/{id}(id=${car.getId()})}">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm" value="Delete">Delete
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <form th:method="GET" th:action="@{/management/{id}/sell(id=${car.getId()})}">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm" value="Sell">Sell
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <span th:text="'Total cars : ' + ${cars.size()}"></span>
+            </div>
+        </div>
+    </div>
+    <br/>
+
+</main>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
 </body>

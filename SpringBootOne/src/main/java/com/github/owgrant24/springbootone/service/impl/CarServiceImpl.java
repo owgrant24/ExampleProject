@@ -4,6 +4,7 @@ import com.github.owgrant24.springbootone.model.Car;
 import com.github.owgrant24.springbootone.repository.CarRepository;
 import com.github.owgrant24.springbootone.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,7 @@ public class CarServiceImpl implements CarService {
     @Override
     @Transactional
     public Car getCarById(int id) {
-        return carRepository.getOne(id);
+        return carRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -47,6 +48,12 @@ public class CarServiceImpl implements CarService {
     @Transactional
     public List<Car> getAllCarsWithFilter(Boolean text) {
         return carRepository.getAllCarsWithFilter(text);
+    }
+
+    @Override
+    @Transactional
+    public List<Car> getCarWithFiltering(Specification<Car> specification) {
+        return carRepository.findAll(specification);
     }
 
 }
