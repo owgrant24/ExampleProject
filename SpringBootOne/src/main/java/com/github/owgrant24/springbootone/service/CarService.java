@@ -18,6 +18,6 @@ public interface CarService {
 
     void deleteCarById(int id);
 
-    List<Car> getCarWithFiltering(Specification<Car> specification);
+    Page<Car> getCarWitPagingAndFiltering(Specification<Car> specification, Integer page);
 }
 

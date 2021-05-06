@@ -161,13 +161,38 @@
                     </tr>
                     </tbody>
                 </table>
-                <span th:text="'Total cars : ' + ${cars.size()}"></span>
+                <span th:text="'Total cars : ' + ${cars.getContent().size()}"></span>
             </div>
         </div>
     </div>
     <br/>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${cars.isFirst() ? 'disabled' : ''}">
+                    <a class="page-link" aria-label="Previous"
+                       th:href="@{'/management/?page='+ ${cars.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef}}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
 
+                <li class="page-item" th:classappend="${cars.getNumber() + 1 == i ? 'active' : ''}"
+                    th:each="i : ${#numbers.sequence((cars.getNumber() + 1 > 2 ? cars.getNumber() - 1 : 1), (cars.getNumber() + 3 < cars.getTotalPages() ? cars.getNumber() + 3 : cars.getTotalPages()))}">
+                    <a class="page-link" th:text="${i}" th:href="@{'/management/?page=' + ${i} + ${filterDef}}"></a>
+                </li>
+
+                <li class="page-item" th:classappend="${cars.isLast() ? 'disabled' : ''}">
+                    <a class="page-link" aria-label="Next"
+                       th:href="@{'/management/?page='+ ${cars.nextOrLastPageable().getPageNumber() + 1} + ${filterDef}}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </main>
+
+
 <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.min.js}"></script>
 </body>

@@ -49,11 +49,6 @@ public class AuthController {
         return "redirect:/login";
     }
 
-    @GetMapping("/error")
-    public String error() {
-        return "/error";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "auth/sign_in";

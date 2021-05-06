@@ -29,7 +29,7 @@ public class CarController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        // получим одного работника по id из DAO и передадим на отображение в представление
+        // получим одну машину по id из DAO и передаём на отображение в представление
         model.addAttribute("car", carService.getCarById(id));
         return "cars/info";
     }

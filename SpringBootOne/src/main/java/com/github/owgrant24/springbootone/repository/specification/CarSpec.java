@@ -8,6 +8,7 @@ public class CarSpec {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.like(root.get("brand"), "%" + filterBrand + "%");
     }
+
     public static Specification<Car> modelContains(String filterModel) {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.like(root.get("model"), "%" + filterModel + "%");
@@ -22,6 +23,7 @@ public class CarSpec {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.greaterThanOrEqualTo(root.get("mileage"), value);
     }
+
     public static Specification<Car> yearLesserThanOrEq(Integer value) {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.lessThanOrEqualTo(root.get("year"), value);
@@ -31,6 +33,7 @@ public class CarSpec {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.greaterThanOrEqualTo(root.get("year"), value);
     }
+
     public static Specification<Car> priceLesserThanOrEq(Integer value) {
         return (root, criteriaQuery, criteriaBuilder)
                 -> criteriaBuilder.lessThanOrEqualTo(root.get("price"), value);

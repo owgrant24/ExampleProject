@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")
                 // Когда пользователь прошёл аутентификацию и хочет зайти на странички для не авторизированных
                 // пользователей
-                .and().exceptionHandling().accessDeniedPage("/error")
+                // .and().exceptionHandling().accessDeniedPage("/error")
                 .and()
                 // добавлена возможность logout
                 .logout();

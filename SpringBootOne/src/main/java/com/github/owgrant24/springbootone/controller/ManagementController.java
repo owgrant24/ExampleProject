@@ -32,13 +32,13 @@ public class ManagementController {
     @GetMapping()
     public String index(Model model
             , @AuthenticationPrincipal SecurityUser user
-            , @RequestParam Map<String, String> params
+            , @RequestParam Map<String, String> requestParams
     ) {
+        Integer pageNumber = Integer.parseInt(requestParams.getOrDefault("page", "1"));
+        CarFilter carFilter = new CarFilter(requestParams);
 
-        CarFilter carFilter = new CarFilter(params);
-
-        model.addAttribute("cars", carService.getCarWithFiltering(carFilter.getSpec()));
-//        model.addAttribute("filterDef", carFilter.getFilterDefinition().toString());
+        model.addAttribute("cars", carService.getCarWitPagingAndFiltering(carFilter.getSpec(), pageNumber));
+        model.addAttribute("filterDef", carFilter.getFilterDefinition().toString());
         model.addAttribute("user", user.toString());
         return "management/index";
     }

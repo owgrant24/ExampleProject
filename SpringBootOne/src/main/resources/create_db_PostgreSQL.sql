@@ -59,9 +59,12 @@ CREATE TABLE cars
     PRIMARY KEY (id)
 );
 
-
 INSERT INTO cars (vin, brand, model, year_of_manufacture, price, mileage, sold)
-VALUES ('XWBJA69VJDA033200', 'Chevrolet', 'Cruse', '2014', 400000, 97000, false),
+VALUES ('WVWZZZ3AZSN223456', 'Volkswagen', 'Polo', '1999', 150000, 70000, false),
+       ('WVWZZZ3AZSN223457', 'Volkswagen', 'Jetta', '2001', 130000, 66000, false),
+       ('WVWZZZ3AZSN223458', 'Volkswagen', 'Tiguan', '2019', 1430000, 30000, false),
+       ('WVWZZZ3AZSN223459', 'Volkswagen', 'Tiguan', '2021', 2100000, 0, false),
+       ('XWBJA69VJDA033200', 'Chevrolet', 'Cruse', '2014', 400000, 97000, false),
        ('XWBJA69VJDA001011', 'Chevrolet', 'Lacetti', '2012', 290000, 120000, true),
        ('XWBJA69VJDA101022', 'Kia', 'Optima', '2018', 1290000, 120000, true),
        ('ZXCVBN3AZSN123459', 'Lada', 'Vesta', '2020', 700000, 1000, false),
