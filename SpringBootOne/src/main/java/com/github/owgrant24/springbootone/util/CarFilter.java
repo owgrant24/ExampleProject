@@ -55,6 +55,11 @@ public class CarFilter {
             spec = spec.and(CarSpec.priceLesserThanOrEq(maxPrice));
             filterDefinition.append("&maxPrice=").append(maxPrice);
         }
+        if (map.containsKey("sold") && !map.get("sold").isEmpty()) {
+            String sold = map.get("sold");
+            spec = spec.and((CarSpec.soldContains(sold)));
+            filterDefinition.append("&sold=").append(sold);
+        }
 
     }
 }

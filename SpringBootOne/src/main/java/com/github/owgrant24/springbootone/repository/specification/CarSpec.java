@@ -44,5 +44,11 @@ public class CarSpec {
                 -> criteriaBuilder.greaterThanOrEqualTo(root.get("price"), value);
     }
 
+    public static Specification<Car> soldContains(String filterSold) {
+        Boolean value = Boolean.parseBoolean(filterSold);
+        return (root, criteriaQuery, criteriaBuilder)
+                -> criteriaBuilder.equal(root.get("sold"), value);
+    }
+
 
 }
