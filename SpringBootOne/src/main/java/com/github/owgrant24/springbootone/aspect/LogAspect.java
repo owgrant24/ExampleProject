@@ -14,7 +14,6 @@ import java.util.Arrays;
 @Component
 @Aspect
 public class LogAspect {
-
     private Object logMethodInvocation(ProceedingJoinPoint jp) throws Throwable {
         StringBuilder info = new StringBuilder();
         long start = System.currentTimeMillis();
@@ -28,7 +27,7 @@ public class LogAspect {
         return result;
     }
 
-    @Around("execution(* com.github.owgrant24.springbootone.dao.*.*(..))")
+    @Around("execution(* com.github.owgrant24.springbootone.repository.*.*(..))")
     public Object logDAO(ProceedingJoinPoint jp) throws Throwable {
         return logMethodInvocation(jp);
     }

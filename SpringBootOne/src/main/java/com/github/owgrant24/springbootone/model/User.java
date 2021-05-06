@@ -21,11 +21,11 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @NotBlank(message = "Name is required")
+    @Size(min = 1, max = 50, message = "Name should be from 1 to 50 symbols")
     @Column(name = "name")
     private String name;
 
-    @Size(min = 1, max = 50, message = "Surname should be from 1 to 50 symbols")
+    @Size(max = 50, message = "Surname should be up to 50 symbols")
     @Column(name = "surname")
     private String surname;
 

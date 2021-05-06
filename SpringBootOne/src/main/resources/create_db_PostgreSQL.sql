@@ -31,19 +31,22 @@ VALUES ('Aleksandr', 'Ivanov', 'alex@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfX
        ('Oleg', 'Ivanov', 'oleg@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
        ('Aleksandr', 'Gorbunov', 'alex_gorbun@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
        ('Nina', 'Sidorova', 'nina@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('Boris', 'Makarov', 'dark@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai');
+       ('Boris', 'Makarov', 'dark@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
+       ('John', 'Smith', 'demo@mail.ru', '$2a$10$QF0K7IGyIPwWktMYzebP7utSOAUd1BW4n2yGStnYIXpiBaTs2ofaW');
 
 INSERT INTO roles (name)
 VALUES ('ROLE_ADMIN'),
        ('ROLE_MANAGER'),
-       ('ROLE_BUYER');
+       ('ROLE_BUYER'),
+       ('ROLE_DEMO');
 
 INSERT INTO user_roles
 VALUES (1, 1),
        (2, 2),
        (3, 3),
        (4, 3),
-       (5, 1);
+       (5, 1),
+       (6, 4);
 
 CREATE TABLE cars
 (

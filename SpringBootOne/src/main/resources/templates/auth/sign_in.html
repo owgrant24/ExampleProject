@@ -37,6 +37,11 @@
 
 <form action="/login/process" method="post" class="form-signin">
     <!--    <img class="mb-4" th:src="@{/webjars/assets/brand/bootstrap-solid.svg}" alt="" width="72" height="72">-->
+    <div class="alert alert-info" role="alert">
+        Hey! To view the site in demo mode, you must enter:<br>
+        login: demo@mail.ru<br>
+        password: demo
+    </div>
     <div class="alert alert-danger" role="alert" th:if="${param.error}">Bad credentials</div>
     <div th:if="${param.logout} != null">
         <div class="alert alert-success col-xs-offset-1 col-xs-10">

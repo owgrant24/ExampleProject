@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
-@Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
+@Secured({"ROLE_ADMIN", "ROLE_MANAGER", "ROLE_DEMO"})
 @Controller
 @RequestMapping(value = "/management")
 public class ManagementController {
@@ -54,7 +54,7 @@ public class ManagementController {
         model.addAttribute("car", carService.getCarById(id));
         return "management/edit";
     }
-
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PostMapping()
     public String create(@ModelAttribute("car") @Valid Car car,
                          BindingResult bindingResult) {
@@ -64,7 +64,7 @@ public class ManagementController {
         carService.saveCar(car);
         return "redirect:/management";                                              // редирект на страницу index
     }
-
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -73,7 +73,7 @@ public class ManagementController {
         carService.saveCar(car);
         return "redirect:/management";
     }
-
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         carService.deleteCarById(id);
@@ -85,7 +85,7 @@ public class ManagementController {
         model.addAttribute("car", carService.getCarById(id));
         return "management/sell";
     }
-
+    @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PatchMapping("/{id}/sell")
     public String sell(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
