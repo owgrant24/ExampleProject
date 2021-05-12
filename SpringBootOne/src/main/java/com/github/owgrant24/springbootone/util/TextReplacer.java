@@ -7,10 +7,4 @@ public class TextReplacer {
         sb.insert(0,"***");
         return sb.toString();
     }
-
-    public static void main(String[] args) {
-        String email = "bangladesh@mail.ru";
-        String emailCrypt = emailCrypt(email);
-        System.out.println(emailCrypt);
-    }
 }

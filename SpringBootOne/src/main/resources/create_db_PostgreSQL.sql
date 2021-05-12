@@ -27,12 +27,14 @@ CREATE TABLE user_roles
 
 -- Insert data
 INSERT INTO users (name, surname, email, password)
-VALUES ('Aleksandr', 'Ivanov', 'alex@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('Oleg', 'Ivanov', 'oleg@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('Aleksandr', 'Gorbunov', 'alex_gorbun@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('Nina', 'Sidorova', 'nina@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('Boris', 'Makarov', 'dark@mail.ru', '$2a$10$r9oj99L0CVzw7a0aT89bNehfXkv8KvxI7wDQ25tqaDnt0yVDrj2ai'),
-       ('John', 'Smith', 'demo@mail.ru', '$2a$10$QF0K7IGyIPwWktMYzebP7utSOAUd1BW4n2yGStnYIXpiBaTs2ofaW');
+VALUES ('John', 'Smith', 'demo@mail.ru', '$2a$10$QF0K7IGyIPwWktMYzebP7utSOAUd1BW4n2yGStnYIXpiBaTs2ofaW'),
+       ('Alexei', 'Volkoff', 'alex@mail.ru', '$2a$10$NbAhhj9QL2rvHGcgdIvU3O4PIp20s6EXsRYYV.DJtUZYx6gHeFhpW'),
+       ('Boris', 'Makarov', 'dark@mail.ru', '$2a$10$QslYjpOrodZWbUjXVgu1Yu6mM2CYBl3Z.A6zccmPaWPD100dWjJke'),
+       ('Teimur', 'Dzhafarov', 'dz@gmail.com', '$2a$10$gCqXO5923/y9lGZYZ/Sk7OKh588l1q31QQRo.z7ZxfjnDm/Vnj5Mi'),
+       ('Vlad', 'Svetlakov', 'vlad@mail.ru', '$2a$10$ntl0hCGZ/XI24gDqWm6IUecBb5P7a.6lBwBmtAXG37lkxmCxyaTg2'),
+       ('Nina', 'Sidorova', 'nina@mail.ru', '$2a$10$tgv3J8sta2TuIRVYdBLdLu7VgJmSTWtAuSgEXJ1uu7aZ2zVRmI13S'),
+       ('Denis', 'Abrashin', 'condor@mail.ru', '$2a$10$gCqXO5923/y9lGZYZ/Sk7OKh588l1q31QQRo.z7ZxfjnDm/Vnj5Mi');
+
 
 INSERT INTO roles (name)
 VALUES ('ROLE_ADMIN'),
@@ -41,12 +43,13 @@ VALUES ('ROLE_ADMIN'),
        ('ROLE_DEMO');
 
 INSERT INTO user_roles
-VALUES (1, 1),
-       (2, 2),
-       (3, 3),
-       (4, 3),
-       (5, 1),
-       (6, 4);
+VALUES (1, 4),
+       (2, 1),
+       (3, 1),
+       (4, 1),
+       (5, 2),
+       (6, 3),
+       (7, 1);
 
 CREATE TABLE cars
 (
