@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.Objects;
 
 
 @Getter
@@ -37,6 +38,26 @@ public class SecurityUser extends User {
         super(email, password, authorities);
         this.name = name;
         this.surname = surname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
+        SecurityUser that = (SecurityUser) o;
+        return Objects.equals(name, that.name) && Objects.equals(surname, that.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, surname);
     }
 
     @Override

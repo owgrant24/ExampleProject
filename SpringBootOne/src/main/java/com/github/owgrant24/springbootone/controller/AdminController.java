@@ -1,7 +1,6 @@
 package com.github.owgrant24.springbootone.controller;
 
 import com.github.owgrant24.springbootone.service.UserService;
-import com.github.owgrant24.springbootone.util.TextReplacer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,6 @@ public class AdminController {
     @GetMapping()
     public String admin(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        ;
         return "def/dashboard";
     }
 
