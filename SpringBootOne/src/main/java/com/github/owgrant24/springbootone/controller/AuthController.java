@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+
 @Controller
 public class AuthController {
+
     private UserService userService;
     private UserValidator userValidator;
 

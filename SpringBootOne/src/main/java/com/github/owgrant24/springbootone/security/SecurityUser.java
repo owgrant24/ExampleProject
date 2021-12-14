@@ -7,9 +7,11 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
+
 @Getter
 @Setter
 public class SecurityUser extends User {
+
     private String name;
     private String surname;
 
@@ -21,7 +23,8 @@ public class SecurityUser extends User {
 
     public SecurityUser(
             String email, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired,
-            boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+            boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities
+    ) {
         super(email, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         name = "";
         surname = "";
@@ -29,7 +32,8 @@ public class SecurityUser extends User {
 
     public SecurityUser(
             String email, String password, Collection<? extends GrantedAuthority> authorities,
-            String name, String surname) {
+            String name, String surname
+    ) {
         super(email, password, authorities);
         this.name = name;
         this.surname = surname;
@@ -39,4 +43,5 @@ public class SecurityUser extends User {
     public String toString() {
         return name + " " + surname;
     }
+
 }

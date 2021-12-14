@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+
 @Component
 public class UserValidator implements Validator {
 
@@ -36,4 +37,5 @@ public class UserValidator implements Validator {
         }
 
     }
+
 }

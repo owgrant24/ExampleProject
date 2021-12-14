@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -40,4 +41,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 user.getEmail(), user.getPassword(), grantedAuthorities, user.getName(), user.getSurname()
         );
     }
+
 }

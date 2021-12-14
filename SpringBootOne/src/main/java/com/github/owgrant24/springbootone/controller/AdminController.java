@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Secured({"ROLE_ADMIN", "ROLE_DEMO"})
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
+
     private UserService userService;
 
     @Autowired
@@ -25,7 +27,8 @@ public class AdminController {
     @Secured({"ROLE_ADMIN", "ROLE_DEMO"})
     @GetMapping()
     public String admin(Model model) {
-        model.addAttribute("users", userService.getAllUsers());;
+        model.addAttribute("users", userService.getAllUsers());
+        ;
         return "def/dashboard";
     }
 

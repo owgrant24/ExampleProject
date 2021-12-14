@@ -7,7 +7,9 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
+
 public interface CarService {
+
     List<Car> getAllCars();
 
     List<Car> getAllCarsWithFilter(Boolean text);
@@ -19,5 +21,6 @@ public interface CarService {
     void deleteCarById(int id);
 
     Page<Car> getCarWitPagingAndFiltering(Specification<Car> specification, Integer page);
+
 }
 

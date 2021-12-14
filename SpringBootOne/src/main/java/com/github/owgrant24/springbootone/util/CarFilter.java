@@ -7,8 +7,10 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Map;
 
+
 @Getter
 public class CarFilter {
+
     private Specification<Car> spec;
     private StringBuilder filterDefinition;
 
@@ -62,4 +64,5 @@ public class CarFilter {
         }
 
     }
+
 }

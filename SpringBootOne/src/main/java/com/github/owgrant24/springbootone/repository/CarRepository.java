@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
-public interface CarRepository extends JpaRepository<Car, Integer> , JpaSpecificationExecutor<Car> {
+public interface CarRepository extends JpaRepository<Car, Integer>, JpaSpecificationExecutor<Car> {
 
     @Query(value = "FROM Car WHERE sold = ?1")
     List<Car> getAllCarsWithFilter(Boolean text);
+
 }

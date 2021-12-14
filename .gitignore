@@ -33,4 +33,4 @@ exp/
 lib/
 
 *.iml
-*.properties
+secret.properties

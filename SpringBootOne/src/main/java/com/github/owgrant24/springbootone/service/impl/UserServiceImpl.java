@@ -14,8 +14,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Service
 public class UserServiceImpl implements UserService {
+
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
@@ -68,4 +70,5 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
     }
+
 }

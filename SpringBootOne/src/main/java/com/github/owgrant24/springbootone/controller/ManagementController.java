@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Map;
 
+
 @Secured({"ROLE_ADMIN", "ROLE_MANAGER", "ROLE_DEMO"})
 @Controller
 @RequestMapping(value = "/management")
 public class ManagementController {
+
     private CarService carService;
 
     @Autowired
@@ -30,7 +32,8 @@ public class ManagementController {
     }
 
     @GetMapping()
-    public String index(Model model
+    public String index(
+            Model model
             , @AuthenticationPrincipal SecurityUser user
             , @RequestParam Map<String, String> requestParams
     ) {
@@ -54,16 +57,20 @@ public class ManagementController {
         model.addAttribute("car", carService.getCarById(id));
         return "management/edit";
     }
+
     @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PostMapping()
-    public String create(@ModelAttribute("car") @Valid Car car,
-                         BindingResult bindingResult) {
+    public String create(
+            @ModelAttribute("car") @Valid Car car,
+            BindingResult bindingResult
+    ) {
         if (bindingResult.hasErrors()) {
             return "management/new";
         }
         carService.saveCar(car);
         return "redirect:/management";                                              // редирект на страницу index
     }
+
     @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
@@ -73,6 +80,7 @@ public class ManagementController {
         carService.saveCar(car);
         return "redirect:/management";
     }
+
     @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
@@ -85,6 +93,7 @@ public class ManagementController {
         model.addAttribute("car", carService.getCarById(id));
         return "management/sell";
     }
+
     @Secured({"ROLE_ADMIN", "ROLE_MANAGER"})
     @PatchMapping("/{id}/sell")
     public String sell(@ModelAttribute("car") @Valid Car car, BindingResult bindingResult) {
@@ -95,4 +104,5 @@ public class ManagementController {
         carService.saveCar(car);
         return "redirect:/management";                                              // редирект на страницу index
     }
+
 }

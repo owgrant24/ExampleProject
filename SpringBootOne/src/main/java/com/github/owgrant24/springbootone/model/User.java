@@ -10,12 +10,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -57,4 +59,5 @@ public class User {
     public String toString() {
         return name + " " + surname + " " + email;
     }
+
 }

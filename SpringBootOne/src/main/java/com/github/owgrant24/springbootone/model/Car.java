@@ -9,6 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -54,4 +55,5 @@ public class Car {
     public String toString() {
         return brand + " " + model + " " + year;
     }
+
 }
