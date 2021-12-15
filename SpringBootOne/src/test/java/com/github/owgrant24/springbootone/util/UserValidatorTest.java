@@ -1,31 +1,36 @@
 package com.github.owgrant24.springbootone.util;
 
-import com.github.owgrant24.springbootone.config.TestConfig;
 import com.github.owgrant24.springbootone.model.User;
 import com.github.owgrant24.springbootone.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.validation.Errors;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = TestConfig.class, loader = AnnotationConfigContextLoader.class)
+
+@Slf4j
+@SpringBootTest
 class UserValidatorTest {
 
     @Autowired
     private UserValidator userValidator;
 
-    // mocked dependencies
-    @Autowired
+    @MockBean
     private UserService userService;
 
     private static final String userEmail = "admin@mail.ru";
+
     private static final User user = mock(User.class);
 
     @BeforeAll
@@ -48,6 +53,7 @@ class UserValidatorTest {
         // Проверяем что на объекте errors, никогда не вызывался объект rejectValue с такими параметрами
         // (email и 2 любых других)
         verify(errors, never()).rejectValue(eq("email"), any(), any());
+        log.info(errors.toString());
     }
 
     @Test
@@ -63,4 +69,5 @@ class UserValidatorTest {
         verify(errors, times(1))
                 .rejectValue(eq("email"), any(), any());
     }
+
 }
