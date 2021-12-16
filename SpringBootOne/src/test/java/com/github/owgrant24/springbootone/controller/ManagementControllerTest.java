@@ -12,6 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -49,7 +51,6 @@ class ManagementControllerTest {
     @Test
     void edit() throws Exception {
         when(carService.getCarById(id)).thenReturn(car);
-
         mockMvc.perform(get("/management/{id}/edit", String.valueOf(id)))
                 .andDo(print())
                 // Проверка что нам придет ответ "200"
@@ -59,6 +60,7 @@ class ManagementControllerTest {
                 // Проверка что нам вернется view с данным именем
                 .andExpect(view().name("management/edit"))
         ;
+        verify(carService, times(1)).getCarById(1);
     }
 
     @Test
@@ -110,6 +112,7 @@ class ManagementControllerTest {
         mockMvc.perform(get("/management/{id}/sell", String.valueOf(id)))
                 .andDo(print())
                 .andExpect(status().isOk());
+        verify(carService, times(1)).getCarById(1);
     }
 
     @Test
