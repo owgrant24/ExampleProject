@@ -1,9 +1,11 @@
 package com.github.owgrant24.springbootone.util;
 
-public class TextReplacer {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-    private TextReplacer() {
-    }
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class TextReplacer {
 
     public static String emailCrypt(String text) {
         int beginIndex = text.indexOf('@');

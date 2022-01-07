@@ -30,6 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ManagementControllerTest {
 
+    private final static int ID = 1;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -37,8 +39,7 @@ class ManagementControllerTest {
     private CarService carService;
 
     @MockBean
-    private static Car car;
-    private final int id = 1;
+    private Car car;
 
     @Test
     void newCar() throws Exception {
@@ -49,8 +50,8 @@ class ManagementControllerTest {
 
     @Test
     void edit() throws Exception {
-        when(carService.getCarById(id)).thenReturn(car);
-        mockMvc.perform(get("/management/{id}/edit", String.valueOf(id)))
+        when(carService.getCarById(ID)).thenReturn(car);
+        mockMvc.perform(get("/management/{id}/edit", String.valueOf(ID)))
                 .andDo(print())
                 // Проверка что нам придет ответ "200"
                 .andExpect(status().isOk())
@@ -80,7 +81,7 @@ class ManagementControllerTest {
 
     @Test
     void update() throws Exception {
-        mockMvc.perform(patch("/management/{id}", String.valueOf(id))
+        mockMvc.perform(patch("/management/{id}", String.valueOf(ID))
                         .with(csrf())
                         .param("vin", "1234568909")
                         .param("brand", "Honda")
@@ -97,7 +98,7 @@ class ManagementControllerTest {
 
     @Test
     void delete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/management/{id}", String.valueOf(id))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/management/{id}", String.valueOf(ID))
                         .with(csrf()))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
@@ -106,8 +107,8 @@ class ManagementControllerTest {
 
     @Test
     void sale() throws Exception {
-        when(carService.getCarById(id)).thenReturn(car);
-        mockMvc.perform(get("/management/{id}/sell", String.valueOf(id)))
+        when(carService.getCarById(ID)).thenReturn(car);
+        mockMvc.perform(get("/management/{id}/sell", String.valueOf(ID)))
                 .andDo(print())
                 .andExpect(status().isOk());
         verify(carService, times(1)).getCarById(1);
@@ -115,7 +116,7 @@ class ManagementControllerTest {
 
     @Test
     void sell() throws Exception {
-        mockMvc.perform(patch("/management/{id}/sell", String.valueOf(id))
+        mockMvc.perform(patch("/management/{id}/sell", String.valueOf(ID))
                         .with(csrf())
                         .param("vin", "1234568909")
                         .param("brand", "Honda")
