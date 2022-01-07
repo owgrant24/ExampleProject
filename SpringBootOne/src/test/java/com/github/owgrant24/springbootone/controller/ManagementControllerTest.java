@@ -11,7 +11,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -37,7 +36,8 @@ class ManagementControllerTest {
     @MockBean
     private CarService carService;
 
-    private static Car car = mock(Car.class);
+    @MockBean
+    private static Car car;
     private final int id = 1;
 
     @Test
@@ -46,7 +46,6 @@ class ManagementControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
-
 
     @Test
     void edit() throws Exception {
@@ -99,8 +98,7 @@ class ManagementControllerTest {
     @Test
     void delete() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete("/management/{id}", String.valueOf(id))
-                        .with(csrf())
-                )
+                        .with(csrf()))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/management"));
